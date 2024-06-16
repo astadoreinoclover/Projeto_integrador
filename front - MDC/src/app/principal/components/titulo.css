@@ -1,0 +1,24 @@
+.cab {
+    background-color: #2B419C;
+    margin-bottom: 0;
+    z-index: 0;
+}
+
+.cont-cab {
+    width: 90vw;
+    margin: auto;
+    padding-top: 0.5vw;
+    padding-bottom: 0.5vw;
+}
+
+.cont-cab-itens {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-img {
+    min-width: 50px;
+    width: 7vw;
+}

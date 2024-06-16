@@ -1,0 +1,75 @@
+.corpo-ci {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image: url(../../../../public/fundo.png);
+    background-size: auto;
+    background-repeat: repeat;
+    opacity: 0.7;
+}
+
+.container-ci {
+    width: 70%;
+    max-width: 700px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.form-group-ci {
+    margin-bottom: 20px;
+}
+
+.form-group-ci label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group-ci .input-campos,
+.form-group-ci select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.form-group-ci select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+.form-group-ci button {
+    width: 100%;
+    padding: 10px 0;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-group-ci button:hover {
+    background-color: #0056b3;
+}
+
+.form-de-liv-ci {
+    text-align: center;
+    color: #007bff;
+    font-size: 40px;
+    font-family: fantasy;
+}

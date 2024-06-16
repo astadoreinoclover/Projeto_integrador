@@ -1,0 +1,124 @@
+.fundo-tela {
+    background: linear-gradient(#2B419C, #fff);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cadastro-logo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.form-cadastro {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cadastro-fundo {
+    background-color: #2B419C;
+    padding: 20px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cadastro-title {
+    font-size: 3.5vw;
+    color: #fff;
+    font-family: fantasy;
+    margin-bottom: 15px;
+}
+
+.ajuste-cadastro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.area-inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputs-label {
+    font-size: 20px;
+    color: #fff;
+}
+
+.input-cadastro {
+    width: 300px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    outline: none;
+    padding: 3px 5px;
+}
+
+.button-cadastro {
+    background-color: #0f0;
+    color: #fff;
+    padding: 5px 20px;
+    font-size: 20px;
+    border-radius: 10px;
+    opacity: 0.6;
+}
+
+.button-cadastro:hover {
+    opacity: 1;
+}
+
+.pergunta-cadastro {
+    margin:20px;
+    color: #fff;
+    font-size: 15px;
+}
+
+.resposta-cadastro {
+    color: #0f0;
+    opacity: 0.5;
+}
+
+.resposta-cadastro:hover {
+    opacity: 1;
+}
+
+@media screen and (max-width: 700px) {
+    .fundo-tela {
+        flex-direction: column;
+    }
+
+    .cadastro-logo {
+        width: 50vw;
+        display: flex;
+        justify-content: center;
+        margin-top: 25px;
+        margin-bottom: 45px;
+    }
+
+    .cadastro-title {
+        font-size: 25px;
+        color: #fff;
+        font-family: fantasy;
+        margin-bottom: 15px;
+    }
+
+    .form-cadastro {
+        width: 90vw;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .input-cadastro {
+        width: 260px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        outline: none;
+        padding: 3px 5px;
+    }
+}
