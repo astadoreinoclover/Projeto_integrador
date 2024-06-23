@@ -1,10 +1,12 @@
 import express from 'express'
 import cors from "cors"
 import { sequelize } from './database/conecta.js'
+import { Admin } from './models/Admin.js';
 import { User } from './models/User.js';
 import { Item } from './models/Item.js';
 import { Colecao } from './models/Colecao.js';
 import routes from './routes.js'
+
 
 const app = express()
 const port = 3004
@@ -23,6 +25,8 @@ async function conecta_db() {
     console.log('Conexão com Banco de Dados realizada com Sucesso');
     // await Filme.sync({alter: true})      // indica uma alteração (sem remover os registros)
     // await Filme.sync({force: true})      // recria a tabela (limpa, remove todos os registros)
+    await Admin.sync()      // cria a tabela no banco (se não existir)
+    console.log("Tabela de Admins: Ok")
     await User.sync()      // cria a tabela no banco (se não existir)
     console.log("Tabela de Usuarios: Ok")
     await Item.sync()      // cria a tabela no banco (se não existir)

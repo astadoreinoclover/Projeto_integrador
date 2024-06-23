@@ -28,6 +28,23 @@ export async function itemCreate(req, res) {
   }
 }
 
+export async function dataDelete(req, res) {
+  const { id } = req.body;
+  try {
+    const item = await Item.destroy({
+      where: { 
+        id: id
+      }
+    });
+
+    res.status(200).json(`item deleteado: ${item}`);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+}
+
+
+
 export async function itemPesquisa(req, res) {
   const { palavra } = req.params
 

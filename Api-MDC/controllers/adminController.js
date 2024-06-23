@@ -1,9 +1,9 @@
-import { User } from "../models/User.js"
+import { Admin } from "../models/Admin.js"
 
-export async function userIndex(req, res) {
+export async function adminIndex(req, res) {
   try {
-    const users = await User.findAll()
-    res.status(200).json(users)
+    const admin = await Admin.findAll()
+    res.status(200).json(admin)
   } catch (error) {
     res.status(400).send(error)
   }
@@ -50,36 +50,36 @@ function validaSenha(senha) {
   return mensa
 }
 
-export async function userCreate(req, res) {
-  const { nome, email, senha, cpf} = req.body
+export async function adminCreate(req, res) {
+  const { nome, email, senha } = req.body
 
-  if (!nome || !email || !senha || !cpf) {
-    res.status(400).json("Erro... Informe nome, email e senha do admin")
+  if (!nome || !email || !senha) {
+    res.status(400).json("Erro... Informe nome, email e senha")
     return
   }
 
   const mensagem = validaSenha(senha)
   if (mensagem.length > 0) {
-    res.status(400).json({ erro: mensagem.join(', ') })
+    res.status(400).json({ erro: mensagem.join(", ") })
     return
   }
 
   try {
-    const user = await User.create({
-      nome, email, senha, cpf
+    const admin = await Admin.create({
+      nome, email, senha
     })
-    res.status(201).json(user)
+    res.status(201).json(admin)
   } catch (error) {
     res.status(400).send(error)
   }
 }
 
-export async function verificarCadastro(req, res) {
+export async function verificarCadastroAdmin(req, res) {
   const { email } = req.body;
 
   try {
-      const usuarioExistente = await User.findOne({ where: { email: email } });
-      if (!usuarioExistente) {
+      const adminExistente = await Admin.findOne({ where: { email: email } });
+      if (!adminExistente) {
         res.status(200).json({ cadastroExistente: false});
       } else {
         res.status(200).json({ cadastroExistente: true});
@@ -90,32 +90,16 @@ export async function verificarCadastro(req, res) {
   }
 }
 
-export async function verificarCadastro2(req, res) {
-  const { cpf } = req.body;
-
-  try {
-      const usuarioExistente = await User.findOne({ where: { cpf: cpf } });
-      if (!usuarioExistente) {
-        res.status(200).json({ cadastroExistente: false});
-      } else {
-        res.status(200).json({ cadastroExistente: true});
-      }
-  } catch (error) {
-      console.error("Erro ao verificar o cadastro:", error);
-      res.status(500).json({ erro: "Erro interno ao verificar o cadastro" });
-  }
-}
-
-export async function userDelete(req, res) {
+export async function adminDelete(req, res) {
   const { id } = req.body;
   try {
-    const user = await User.destroy({
+    const admin = await Admin.destroy({
       where: { 
         id: id
       }
     });
 
-    res.status(200).json(`usuario deletado: ${user}`);
+    res.status(200).json(`item deleteado: ${admin}`);
   } catch (error) {
     res.status(400).send(error);
   }

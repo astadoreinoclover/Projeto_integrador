@@ -60,6 +60,21 @@ export async function itensDoUsuarioLogado(req, res) {
   }
 }
 
+export async function itensDoUsuarioLogado2(req, res) {
+  const { item_id } = req.body
+  try {
+    const colecao = await Colecao.findAll({
+      where: { item_id: item_id},
+      include: [{ model: Item }]
+    });
+
+    res.status(200).json(colecao);
+    //res.status(200).json({dados});
+  } catch (error) {
+    res.status(400).send(error);
+  }
+}
+
 // export async function itensDoUsuarioLogado2(req, res) {
 //   const { user_id } = req.body;
 //   try {
@@ -143,6 +158,20 @@ export async function itenDelete(req, res) {
     res.status(200).json(`item deleteado: ${colecao}`);
   } catch (error) {
     res.status(400).send(error);
+  }
+}
+
+export default async function itensDelete(req, res) {
+  const { id } = req.body;
+
+  try {
+    const deletedItems = await Colecao.destroy({
+      where: { user_id: id } // Certifique-se de que o campo é correto
+    });
+
+    res.status(200).json({ message: `Itens deletados: ${deletedItems}` });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
   }
 }
 

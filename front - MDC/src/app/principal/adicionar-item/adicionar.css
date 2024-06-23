@@ -79,7 +79,6 @@
 .button-modal {
     background-color: #0f0;
     height: 40px;
-    margin-left: 20px;
     padding: 5px 5px;
     border-radius: 5px;
     opacity: 0.6;
@@ -149,6 +148,25 @@
     color: #2B419C;
     font-weight: bold;
 }
+
+.button-report {
+    background-color: #f00;
+    padding: 3px 5px;
+    border-radius: 5px;
+    color: #2B419C;
+    font-weight: bold;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.textarea-justificativa {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
 
 @media screen and (max-width: 450px) {
     .item-id {
