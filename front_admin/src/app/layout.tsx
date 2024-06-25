@@ -3,9 +3,9 @@ import "./globals.css";
 import Titulo from "./components/Titulo";
 
 export const metadata: Metadata = {
-  title: "Admin: Cineclube Avenida",
-  description: "Cineclube para locação e avaliação de filmes",
-  keywords: ["Cineclube", "Filmes", "Aluguel de Filmes"]
+  title: "Admin: Mundo do Cloecionador",
+  description: "Gerenciador de coleções",
+  keywords: ["Mangás", "Hqs", "Novels"]
 };
 
 export default function RootLayout({

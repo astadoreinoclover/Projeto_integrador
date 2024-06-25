@@ -5,6 +5,7 @@ import { Admin } from './models/Admin.js';
 import { User } from './models/User.js';
 import { Item } from './models/Item.js';
 import { Colecao } from './models/Colecao.js';
+import { Report } from './models/Report.js';
 import routes from './routes.js'
 
 
@@ -33,6 +34,8 @@ async function conecta_db() {
     console.log("Tabela de Itens: Ok")
     await Colecao.sync()      // cria a tabela no banco (se não existir)
     console.log("Tabela de Coleções: Ok")
+    await Report.sync()      // cria a tabela no banco (se não existir)
+    console.log("Tabela de Report: Ok")
   } catch (error) {
     console.error('Erro ao conectar o banco de dados:', error);
   }  

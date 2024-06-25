@@ -31,9 +31,9 @@ function MenuLateral() {
       cancelButtonText: "Não",
       }).then((result: { isConfirmed: any }) => {
       if (result.isConfirmed) {
-          Cookies.remove("user_logado_id")
-          Cookies.remove("user_logado_nome")
-          Cookies.remove("user_logado_token")
+          Cookies.remove("admin_logado_id")
+          Cookies.remove("admin_logado_nome")
+          Cookies.remove("admin_logado_token")
           router.replace("/")
       }
     });

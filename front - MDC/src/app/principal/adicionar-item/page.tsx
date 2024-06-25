@@ -1,7 +1,5 @@
 'use client'
 import React, { useEffect, useState } from "react";
-import Swal from "sweetalert2";
-import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import "./adicionar.css";
 import Cookies from "js-cookie";
@@ -20,20 +18,20 @@ interface Item {
   volume: number;
   sinopse: string;
   editora: string;
-  autor: string
+  autor: string;
 }
 
 export default function Adicionar() {
   const [dados, setDados] = useState<Item[]>([]);
   const [search, setSearch] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isReportModalOpen, setIsReportModalOpen] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState<number | null>(null);
   const [valorPago, setValorPago] = useState<string>(""); // Estado como string para permitir números decimais
+  const [reportText, setReportText] = useState<string>(""); // Estado para o texto do report
 
   useEffect(() => {
     async function recebeDados() {
-      const userId = Number(Cookies.get("admin_logado_id"));
-
       try {
         const response = await fetch("http://localhost:3004/item", {
           method: "GET",
@@ -56,22 +54,25 @@ export default function Adicionar() {
     recebeDados();
   }, []);
 
-  // Filtrar os itens conforme o usuário digita
   const filteredItems = dados.filter(item =>
     item.titulo && item.titulo.toLowerCase().includes(search.toLowerCase())
   );
 
-  // Abrir o modal e definir o ID do item selecionado
-  const openModal = (id: number) => {
+  const openAddModal = (id: number) => {
     setSelectedItemId(id);
-    setIsModalOpen(true);
+    setIsAddModalOpen(true);
     setValorPago(""); // Limpar o valor pago quando abrir o modal
   };
 
-  // Adicionar um novo item à coleção
+  const openReportModal = (id: number) => {
+    setSelectedItemId(id);
+    setIsReportModalOpen(true);
+    setReportText(""); // Limpar o texto do report quando abrir o modal
+  };
+
   const handleAddItem = async () => {
     const userId = Number(Cookies.get("admin_logado_id"));
-    if (selectedItemId !== null && valorPago !== "") { // Verificar se valorPago não está vazio
+    if (selectedItemId !== null && valorPago !== "") {
       try {
         const response = await fetch(`http://localhost:3004/colecao`, {
           method: "POST",
@@ -79,14 +80,14 @@ export default function Adicionar() {
           body: JSON.stringify({
             user_id: userId,
             item_id: selectedItemId,
-            valor: parseFloat(valorPago) // Converter valorPago de string para número antes de enviar
+            valor: parseFloat(valorPago)
           }),
         });
 
         if (response.ok) {
           const addedItem = await response.json();
           setDados([...dados, addedItem]);
-          setIsModalOpen(false); // Fechar o modal após adicionar
+          setIsAddModalOpen(false); // Fechar o modal após adicionar
           toast.success('Item adicionado com sucesso!');
           window.location.href = '/principal';
         } else {
@@ -98,6 +99,35 @@ export default function Adicionar() {
       }
     } else {
       toast.error('Por favor, insira um valor válido.');
+    }
+  };
+
+  const handleReportItem = async () => {
+    const userId = Number(Cookies.get("admin_logado_id"));
+    if (selectedItemId !== null && reportText !== "") {
+      try {
+        const response = await fetch(`http://localhost:3004/report`, {
+          method: "POST",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify({
+            user_id: userId,
+            item_id: selectedItemId,
+            texto: reportText
+          }),
+        });
+
+        if (response.ok) {
+          setIsReportModalOpen(false); // Fechar o modal após reportar
+          toast.success('Reclamação enviada com sucesso!');
+        } else {
+          toast.error('Erro ao enviar reclamação!');
+        }
+      } catch (error) {
+        console.error("Erro ao enviar reclamação:", error);
+        toast.error('Erro ao enviar reclamação!');
+      }
+    } else {
+      toast.error('Por favor, insira um texto válido.');
     }
   };
 
@@ -123,24 +153,23 @@ export default function Adicionar() {
                 <div className="complementos">Editora: {item.editora}</div>
                 <div className="complementos">Autor: {item.autor}</div>
               </div>
-              <button className="button-modal" onClick={() => openModal(item.id)}>Adicionar</button>
+              <button className="button-modal" onClick={() => openAddModal(item.id)}>Adicionar</button>
+              <button className="button-modal" onClick={() => openReportModal(item.id)}>Reportar</button>
             </div>
           ))
         ) : (
           search && <p className="erro">Nenhum item encontrado.</p>
         )}
-        <div>
-        </div>
       </div>
 
-      {isModalOpen && (
+      {isAddModalOpen && (
         <div className="modal">
           <div className="modal-content">
-            <span className="close" onClick={() => setIsModalOpen(false)}>&times;</span>
+            <span className="close" onClick={() => setIsAddModalOpen(false)}>&times;</span>
             <h2 className="h-modal">Adicionar</h2>
             <input
               className="input-valor"
-              type="text" // Alterado para text para permitir números decimais
+              type="text"
               placeholder="Valor Pago"
               value={valorPago}
               onChange={(e) => setValorPago(e.target.value)}
@@ -149,96 +178,22 @@ export default function Adicionar() {
           </div>
         </div>
       )}
+
+      {isReportModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={() => setIsReportModalOpen(false)}>&times;</span>
+            <h2 className="h-modal">Reportar</h2>
+            <textarea
+              className="textarea-report"
+              placeholder="Descreva o problema"
+              value={reportText}
+              onChange={(e) => setReportText(e.target.value)}
+            />
+            <button className="button-report" onClick={handleReportItem}>Enviar</button>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
-
-
-
-// 'use client'
-// import React, { useEffect, useState } from "react";
-// import Swal from "sweetalert2";
-// import { useRouter } from "next/navigation";
-// import { toast } from "sonner";
-// import "./adicionar.css";
-// import Cookies from "js-cookie";
-
-// interface Inputs {
-//   titulo: string;
-//   valor: number;
-// }
-
-// interface Item {
-//   id: number;
-//   titulo: string;
-//   foto: string;
-//   iten: any;
-//   categoria: string;
-//   volume: number
-// }
-
-// export default function Adicionar() {
-//   const [dados, setDados] = useState<Item[]>([]);
-//   const [search, setSearch] = useState("");
-
-//   useEffect(() => {
-//     async function recebeDados() {
-//       const userId = Number(Cookies.get("admin_logado_id"));
-
-//       const data = {
-//         user_id: userId,
-//       };
-
-//       console.log(JSON.stringify(data));
-
-//       try {
-//         const response = await fetch("http://localhost:3004/item", {
-//           method: "GET",
-//           headers: { "Content-type": "application/json" },
-//         });
-
-//         const dados = await response.json();
-//         console.log(dados);
-
-//         if (Array.isArray(dados)) {
-//           setDados(dados);
-//         } else {
-//           console.error("A resposta da API não é um array:", dados);
-//         }
-//       } catch (error) {
-//         console.error("Erro ao receber dados:", error);
-//       }
-//     }
-
-//     recebeDados();
-//   }, []);
-
-//   // Filtrar os itens conforme o usuário digita
-//   const filteredItems = dados.filter(item =>
-//     item.titulo.toLowerCase().includes(search.toLowerCase())
-//   );
-
-//   return (
-//     <div>
-//       <form>
-//         <input
-//           type="text"
-//           placeholder="Digite para buscar"
-//           value={search}
-//           onChange={(e) => setSearch(e.target.value)}
-//         />
-//       </form>
-//       <div>
-//       {search && filteredItems.length > 0 ? (
-//           filteredItems.map((item) => (
-//             <div key={item.id}>
-//               <p>{item.titulo} - {item.volume}</p>
-//             </div>
-//           ))
-//         ) : (
-//           search && <p>Nenhum item encontrado.</p>
-//         )}
-//       </div>
-//     </div>
-//   );
-// }

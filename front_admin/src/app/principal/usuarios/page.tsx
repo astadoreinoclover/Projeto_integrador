@@ -159,6 +159,7 @@ import { Modal } from 'react-responsive-modal'
 import { useEffect, useState } from "react"
 import Swal from 'sweetalert2'
 import Link from 'next/link'
+import Cookies from "js-cookie";
 
 export interface userProps {
   id: number
@@ -225,7 +226,7 @@ function Users() {
           // 3. Exclui o usuário
           const response = await fetch(`http://localhost:3004/user`, {
             method: "DELETE",
-            headers: { "Content-type": "application/json" },
+            headers: { "Content-type": "application/json", Authorization: "Bearer " + Cookies.get("admin_logado_token") as string },
             body: JSON.stringify({
                 id: id
             })
