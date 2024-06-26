@@ -60,9 +60,9 @@ export async function reportDelete(req, res) {
           id: id
         }
       });
-  
+
       res.status(200).json(`usuario deletado: ${report}`);
     } catch (error) {
       res.status(400).send(error);
     }
-  }
+}

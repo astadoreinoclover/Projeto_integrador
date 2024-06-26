@@ -2,8 +2,8 @@ import { Router } from "express"
 import { loginUser } from "./controllers/userLoginController.js"
 import { verificaToken } from "./middlewares/verificaToken.js"
 import { verificaTokenAdmin } from "./middlewares/verificaTokenAdmin.js"
-import { dataDelete, itemCreate, itemIndex, itemPesquisa, itemUpdate } from "./controllers/itemController.js"
-import { userCreate, userDelete, userIndex, verificarCadastro, verificarCadastro2 } from "./controllers/userController.js"
+import { ItemsCountByCategory, NumberOfItens, dataDelete, itemCreate, itemIndex, itemPesquisa, itemUpdate } from "./controllers/itemController.js"
+import { NumberOfUsers, userCreate, userDelete, userIndex, verificarCadastro, verificarCadastro2 } from "./controllers/userController.js"
 import itensDelete, { calcTotal, colecaoCreate, colecaoIndex, itenDelete, itensDoUsuarioLogado, itensDoUsuarioLogado2, itenspelotitulo, itenspelovolume } from "./controllers/colecaoController.js"
 import { loginAdmin } from "./controllers/adminLoginController.js"
 import { adminCreate, adminIndex, verificarCadastroAdmin } from "./controllers/adminController.js"
@@ -16,12 +16,15 @@ router.get("/item", itemIndex)
       .get("/item/pesquisa/:palavra", itemPesquisa)
       .delete("/exclusao",verificaTokenAdmin, dataDelete)
       .put("/item-up",verificaTokenAdmin, itemUpdate)
+      .get("/numeroitem", NumberOfItens)
+      .get("/numerocategorias", ItemsCountByCategory)
 
 router.get('/user', userIndex)
       .post('/user', userCreate)
       .post("/verificar-cadastro", verificarCadastro)
       .post("/verificar-cadastro2", verificarCadastro2)
       .delete("/user",verificaTokenAdmin, userDelete)
+      .get("/numeroUsuario", NumberOfUsers)
 
 router.post("/loginUser", loginUser)     
 

@@ -120,3 +120,13 @@ export async function userDelete(req, res) {
     res.status(400).send(error);
   }
 }
+
+export async function NumberOfUsers (req, res) {
+  try {
+    const userCount = await User.count();
+    res.status(200).json({ count: userCount });
+  } catch (error) {
+    console.error('Erro ao contar usuários:', error);
+    res.status(500).json({ error: 'Erro ao contar usuários' });
+  }
+};

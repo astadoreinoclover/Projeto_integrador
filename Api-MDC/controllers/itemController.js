@@ -91,3 +91,30 @@ export async function itemPesquisa(req, res) {
     res.status(400).send(error)
   }
 }
+
+export async function NumberOfItens (req, res) {
+  try {
+    const itemCount = await Item.count();
+    res.status(200).json({ count: itemCount });
+  } catch (error) {
+    console.error('Erro ao contar usuários:', error);
+    res.status(500).json({ error: 'Erro ao contar usuários' });
+  }
+};
+
+export async function ItemsCountByCategory (req, res) {
+  try {
+    const mangaCount = await Item.count({ where: { categoria: 'manga' } });
+    const hqCount = await Item.count({ where: { categoria: 'hq' } });
+    const novelCount = await Item.count({ where: { categoria: 'novel' } });
+
+    res.status(200).json({
+      manga: mangaCount,
+      hq: hqCount,
+      novel: novelCount,
+    });
+  } catch (error) {
+    console.error('Erro ao contar itens por categoria:', error);
+    res.status(500).json({ error: 'Erro ao contar itens por categoria' });
+  }
+};
