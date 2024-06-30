@@ -108,46 +108,48 @@ function CadastrarItem() {
         <div className="container-ci">
             <h2 className="form-de-liv-ci">Cadastro</h2>
             <form onSubmit={handleSubmit(enviaDados)}>
-                <div className="form-group-ci">
-                <label htmlFor="titulo">Título:</label>
-                <input className="input-campos" type="text" id="titulo" {...register("titulo")} required />
+                <div className="grid-container">
+                    <div className="form-group-ci">
+                        <label htmlFor="titulo">Título:</label>
+                        <input className="input-campos" type="text" id="titulo" {...register("titulo")} required />
+                    </div>
+                    <div className="form-group-ci">
+                        <label htmlFor="volume">Volume:</label>
+                        <input className="input-campos" type="text" id="volume" {...register("volume")} required />
+                    </div>
+                    <div className="form-group-ci">
+                        <label htmlFor="foto">Capa:</label>
+                        <input className="input-campos" type="text" id="foto" {...register("foto")} required />
+                    </div>
+                    <div className="form-group-ci">
+                        <label htmlFor="valor">Valor:</label>
+                        <input className="input-campos" type="text" id="valor" {...register("valor")} required />
+                    </div>
+                    <div className="form-group-ci">
+                        <label htmlFor="editora">Editora:</label>
+                        <input className="input-campos" type="text" id="editora" {...register("editora")} required />
+                    </div>
+                    <div className="form-group-ci">
+                        <label htmlFor="genero">Gênero:</label>
+                        <input className="input-campos" type="text" id="genero" {...register("genero")} required />
+                    </div>
+                    <div className="form-group-ci">
+                        <label htmlFor="autor">Autor:</label>
+                        <input className="input-campos" type="text" id="autor" {...register("autor")} required/>
+                    </div>
+                    <div className="form-group-ci">
+                        <label htmlFor="categoria">Categoria:</label>
+                        <select id="categoria" className="input-campos" {...register("categoria")} required>
+                            <option value="">Selecione...</option>
+                            <option value="manga">Manga</option>
+                            <option value="hq">HQ</option>
+                            <option value="novel">Novel</option>
+                        </select>
+                    </div>
                 </div>
                 <div className="form-group-ci">
-                <label htmlFor="volume">Volume:</label>
-                <input className="input-campos" type="text" id="volume" {...register("volume")}/>
-                </div>
-                <div className="form-group-ci">
-                <label htmlFor="foto">Capa:</label>
-                <input className="input-campos" type="text" id="foto" {...register("foto")} />
-                </div>
-                <div className="form-group-ci">
-                <label htmlFor="valor">Valor:</label>
-                <input className="input-campos" type="text" id="valor" {...register("valor")} required />
-                </div>
-                <div className="form-group-ci">
-                <label htmlFor="editora">Editora:</label>
-                <input className="input-campos" type="text" id="editora" {...register("editora")} />
-                </div>
-                <div className="form-group-ci">
-                <label htmlFor="genero">Gênero:</label>
-                <input className="input-campos" type="text" id="genero" {...register("genero")} />
-                </div>
-                <div className="form-group-ci">
-                <label htmlFor="autor">Autor:</label>
-                <input className="input-campos" type="text" id="autor" {...register("autor")} />
-                </div>
-                <div className="form-group-ci">
-                <label htmlFor="sinopse">Sinopse:</label>
-                <textarea className="input-campos" id="sinopse" {...register("sinopse")} />
-                </div>
-                <div className="form-group-ci">
-                <label htmlFor="categoria">Categoria:</label>
-                <select id="categoria" {...register("categoria")} required>
-                    <option value="">Selecione...</option>
-                    <option value="manga">Manga</option>
-                    <option value="hq">HQ</option>
-                    <option value="novel">Novel</option>
-                </select>
+                    <label htmlFor="sinopse">Sinopse:</label>
+                    <textarea className="input-campos" id="sinopse" {...register("sinopse")}></textarea>
                 </div>
                 <div className="form-group-ci">
                     <button type="submit">Enviar</button>

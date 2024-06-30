@@ -54,22 +54,6 @@ function Item() {
 
     recebeDados();
 
-    if (categoriaClicada === "manga") {
-      const fundoitem = document.querySelector<HTMLElement>(".fundo-item");
-      if (fundoitem) {
-        fundoitem.style.backgroundImage = `url(/mangafund.png)`;
-      }
-    } else if (categoriaClicada === "hq") {
-        const fundoitem = document.querySelector<HTMLElement>(".fundo-item");
-        if (fundoitem) {
-            fundoitem.style.backgroundImage = `url(/hqfund.png)`;
-        }
-    } else if (categoriaClicada === "novel") {
-        const fundoitem = document.querySelector<HTMLElement>(".fundo-item");
-        if (fundoitem) {
-          fundoitem.style.backgroundImage = `url(/fundo.png)`;
-        }
-    }
   }, [categoriaClicada]);
 
   const handleRemover = async (item: Item) => {
@@ -112,20 +96,40 @@ function Item() {
         .filter(item => item.iten.titulo === tituloClicada)
         .filter(item => item.iten.volume === volumeClicada)
         .map((item) => (
-            <div className='area-item'>
-                <div className='foto-item'>
-                    <img className='img' src={item.iten.foto} alt={`${item.iten.titulo} - ${item.iten.volume}`} />
-                </div>
-                <div className='text-item'>
-                    <h1 className='conteudo titulo-conteudo'>{item.iten.titulo} - Vol. {item.iten.volume}</h1>
-                    <div className='conteudo sinopse'>Sinopse: <br/>{item.iten.sinopse}</div>
-                    <div className='conteudo'>Autor: {item.iten.autor}</div>
-                    <div className='conteudo'>Editora: {item.iten.editora}</div>
-                    <div className='conteudo'>Gênero: {item.iten.genero}</div>
-                    <div className='conteudo'> Valor: R$ {Number(item.valor).toLocaleString("pt-br", { minimumFractionDigits: 2 })}</div>
-                    <button  onClick={() => handleRemover(item)} className='remover'>Remover</button>
-                </div>
-           </div>
+            <div className='tela-item'>
+                <div className="container">
+                  <img src={item.iten.foto} alt={`${item.iten.titulo} - ${item.iten.volume}`} className="book-cover"/>
+                  <div className="book-info">
+                      <div>
+                          <label htmlFor="titulo">Título:</label>
+                          <p id="titulo">{item.iten.titulo}</p>
+                      </div>
+                      <div>
+                          <label htmlFor="volume">Volume:</label>
+                          <p id="volume">{item.iten.volume}</p>
+                      </div>
+                      <div>
+                          <label htmlFor="autor">Autor:</label>
+                          <p id="autor">{item.iten.autor}</p>
+                      </div>
+                      <div>
+                          <label htmlFor="genero">Gênero:</label>
+                          <p id="genero">{item.iten.genero}</p>
+                      </div>
+                      <div>
+                          <label htmlFor="editora">Editora:</label>
+                          <p id="editora">{item.iten.editora}</p>
+                      </div>
+                      <div>
+                          <label htmlFor="valor">Valor:</label>
+                          <p id="categoria">R$ {Number(item.valor).toLocaleString("pt-br", { minimumFractionDigits: 2 })}</p>
+                      </div>
+                  </div>
+                  <label htmlFor="sinopse">Sinopse:</label>
+                  <p id="sinopse">{item.iten.sinopse}</p>
+                  <button onClick={() => handleRemover(item)} className="btn-remove">Remover</button>
+              </div>
+            </div>
 
         ))
     : null;

@@ -130,29 +130,17 @@ function Titulos() {
     recebeDados();
 
     if (categoriaClicada === "manga") {
-      const cardsContainer = document.querySelector<HTMLElement>(".cards-container");
       const titleTitulos = document.querySelector<HTMLElement>(".title-titulos");
-      if (cardsContainer) {
-        cardsContainer.style.backgroundImage = `url(/mangafund.png)`;
-      }
       if (titleTitulos) {
-        titleTitulos.style.backgroundImage = `url(/titlemanga.png)`;
+        titleTitulos.style.backgroundImage = `url(/mangafund.png)`;
       }
     } else if (categoriaClicada === "hq") {
-        const cardsContainer = document.querySelector<HTMLElement>(".cards-container");
         const titleTitulos = document.querySelector<HTMLElement>(".title-titulos");
-        if (cardsContainer) {
-          cardsContainer.style.backgroundImage = `url(/hqfund.png)`;
-        }
         if (titleTitulos) {
           titleTitulos.style.backgroundImage = `url(/titlehq.png)`;
         }
     } else if (categoriaClicada === "novel") {
-        const cardsContainer = document.querySelector<HTMLElement>(".cards-container");
         const titleTitulos = document.querySelector<HTMLElement>(".title-titulos");
-        if (cardsContainer) {
-          cardsContainer.style.backgroundImage = `url(/fundo.png)`;
-        }
         if (titleTitulos) {
           titleTitulos.style.backgroundImage = `url(/novelfund.png)`;
         }
@@ -190,16 +178,14 @@ function Titulos() {
     : null;
 
   return (
-    <div>
+    <div className='tela-comp'>
         <div className='title-titulos'>
             <div className='title-opacity'>
                 <span className='text-title'>{categoriaClicada}</span>
             </div>
         </div>
         <div style={{flexWrap: "wrap"}}  className='cards-container'>
-            <div className='card-opacity'>
-                {listar}
-            </div>
+          {listar}
         </div>
     </div>
   );

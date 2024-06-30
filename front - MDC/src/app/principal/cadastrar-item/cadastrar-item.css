@@ -1,4 +1,4 @@
-.corpo-ci {
+/* .corpo-ci {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -72,4 +72,88 @@
     color: #007bff;
     font-size: 40px;
     font-family: fantasy;
+} */
+
+.corpo-ci {
+    width: 100%;
+    background: linear-gradient(#2B419C, #fff);
+    padding: 20px;
+}
+
+.container-ci {
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.form-de-liv-ci {
+    color: #2B419C;
+    text-align: center;
+    padding: 15px;
+    border-radius: 8px 8px 0 0;
+    margin: -20px -20px 20px -20px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.form-group-ci {
+    margin-bottom: 15px;
+}
+
+.form-group-ci label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-campos {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 10px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+textarea.input-campos {
+    height: 100px;
+    resize: none;
+}
+
+.form-group-ci button {
+    width: 100%;
+    background-color: #2B419C;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-group-ci button:hover {
+    background-color: #1d2f6f;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 600px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 768px) {
+    .corpo-ci {
+        padding: 40px;
+    }
 }
