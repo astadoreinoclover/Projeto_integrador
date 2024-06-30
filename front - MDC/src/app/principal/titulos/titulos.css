@@ -1,6 +1,6 @@
 .tela-comp {
     background: linear-gradient(#2b419c, #fff);
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .title-opacity {
