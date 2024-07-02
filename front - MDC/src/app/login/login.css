@@ -31,8 +31,8 @@
 .form-title {
     font-size: 3.5vw;
     color: #fff;
-    font-family: fantasy;
     margin-bottom: 15px;
+    font-weight: 700;
 }
 
 .ajustes {
@@ -78,7 +78,7 @@
 }
 
 .button-login {
-    background-color: #0f0;
+    background-color: #4caf50;
     color: #fff;
     padding: 5px 20px;
     font-size: 20px;
@@ -97,7 +97,7 @@
 }
 
 .resposta {
-    color: #0f0;
+    color: #4caf50;
     opacity: 0.5;
 }
 

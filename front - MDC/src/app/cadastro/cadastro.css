@@ -31,7 +31,7 @@
 .cadastro-title {
     font-size: 3.5vw;
     color: #fff;
-    font-family: fantasy;
+    font-weight: 700;
     margin-bottom: 15px;
 }
 
@@ -60,7 +60,7 @@
 }
 
 .button-cadastro {
-    background-color: #0f0;
+    background-color: #4caf50;
     color: #fff;
     padding: 5px 20px;
     font-size: 20px;
@@ -79,7 +79,7 @@
 }
 
 .resposta-cadastro {
-    color: #0f0;
+    color: #4caf50;
     opacity: 0.5;
 }
 

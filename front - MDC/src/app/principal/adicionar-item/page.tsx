@@ -262,12 +262,14 @@ export default function Adicionar() {
   const openAddModal = (id: number) => {
     setSelectedItemId(id);
     setIsAddModalOpen(true);
+    setIsViewModalOpen(false);
     setValorPago("");
   };
 
   const openReportModal = (id: number) => {
     setSelectedItemId(id);
     setIsReportModalOpen(true);
+    setIsViewModalOpen(false);
     setReportText("");
   };
 
@@ -340,15 +342,19 @@ export default function Adicionar() {
 
   return (
     <main className="fundo-adicionar">
-      <form className="form-adicionar">
-        <input
-          className="input-adicionar"
-          type="text"
-          placeholder="Digite para buscar"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-      </form>
+      <div className="form-botton">
+        <form className="form-adicionar">
+          <input
+            className="input-adicionar"
+            type="text"
+            placeholder="Digite para buscar"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </form>
+        <Link href="./cadastrar-item" className="link-cadastro">Cadastrar Item</Link>
+      </div>
+      
       <div className="item-adicionar">
         {search && filteredItems.length > 0 ? (
           filteredItems.map((item) => (
@@ -363,7 +369,6 @@ export default function Adicionar() {
         ) : (
           search && <p className="erro">Nenhum item encontrado.</p>
         )}
-        <Link href="./cadastrar-item" className="link-cadastro">Cadastrar Item</Link>
       </div>
 
       {isViewModalOpen && currentItem && (

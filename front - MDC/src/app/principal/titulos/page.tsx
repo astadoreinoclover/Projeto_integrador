@@ -167,7 +167,7 @@ function Titulos() {
           }
         })
         .map((item) => (
-          <div style={{marginBottom: "20px"}} className='titulo' key={item.iten.id} onClick={() => handleItemClick(item)}>
+          <div style={{marginBottom: "20px", height: "auto"}} className='titulo' key={item.iten.id} onClick={() => handleItemClick(item)}>
             <Link href={{ pathname: '/principal/titulos/volumes', query: { itemClicado: item.iten.titulo } }}>
               <img style={{width: "250px", borderTopLeftRadius: "15px", borderTopRightRadius: "15px"}} src={item.iten.foto} alt={`Capa ${item.iten.titulo}`} />
               <h1 style={{color: "#000", textAlign:"center", textTransform: "uppercase", fontWeight: "bold", marginTop:"15px"}}>{item.iten.titulo}</h1>

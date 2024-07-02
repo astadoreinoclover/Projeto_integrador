@@ -50,7 +50,7 @@ function Titulo2() {
               <span style={{cursor: 'pointer', fontSize: '17.5px'}} className="titulolink">{nomeUsuario}   |</span>
             </div>
             <div>
-                <Link style={{color: "red"}} href="#" className="titulolink" onClick={limpaCookies}>
+                <Link style={{color: "#ff5f5f"}} href="#" className="titulolink" onClick={limpaCookies}>
                     Sign out
                 </Link>
             </div>
