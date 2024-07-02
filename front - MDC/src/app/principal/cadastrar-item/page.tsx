@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import "./cadastrar-item.css"
 import Cookies from "js-cookie"
 import { log } from "console";
+import Link from "next/link";
 
 interface Inputs {
     titulo: string;
@@ -105,6 +106,11 @@ function CadastrarItem() {
 
     return (
     <div className="corpo-ci">
+        <div className="options-c">
+            <Link href="./" className="option-c">Minha Coleção</Link>
+            <Link href="./principal/cadastrar-item" className="option-c">Cadastrar Item<span className="line-c"></span></Link>
+            <h1 className="option-c">Loja</h1>
+        </div>
         <div className="container-ci">
             <h2 className="form-de-liv-ci">Cadastro</h2>
             <form onSubmit={handleSubmit(enviaDados)}>
