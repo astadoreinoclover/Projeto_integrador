@@ -26,6 +26,7 @@ function CadastrarItem() {
     const router = useRouter();
     const [nomeUsuario, setNomeUsuario] = useState<string>("")
     const[idUsuario, setIdUsuario] = useState<string>("")
+    const [step, setStep] = useState<number>(1);
 
   useEffect(() => {
     const nome = Cookies.get("admin_logado_nome") as string
@@ -103,9 +104,17 @@ function CadastrarItem() {
         }
     }
 
+    const nextStep = () => {
+        setStep((prev) => prev + 1);
+    };
+
+    const prevStep = () => {
+        setStep((prev) => prev - 1);
+    };
+
 
     return (
-    <div className="corpo-ci">
+        <div className="corpo-ci">
         <div className="options-c">
             <Link href="./" className="option-c">Minha Coleção</Link>
             <Link href="./principal/cadastrar-item" className="option-c">Cadastrar Item<span className="line-c"></span></Link>
@@ -113,52 +122,71 @@ function CadastrarItem() {
         </div>
         <div className="container-ci">
             <h2 className="form-de-liv-ci">Cadastro</h2>
+            <div className="step-indicator">
+                <span className={step === 1 ? "active" : ""}>1</span>
+                <span className={step === 2 ? "active" : ""}>2</span>
+                <span className={step === 3 ? "active" : ""}>3</span>
+            </div>
             <form onSubmit={handleSubmit(enviaDados)}>
-                <div className="grid-container">
-                    <div className="form-group-ci">
-                        <label htmlFor="titulo">Título:</label>
-                        <input className="input-campos" type="text" id="titulo" {...register("titulo")} required />
+                {step === 1 && (
+                    <div className="grid-container">
+                        <div className="form-group-ci">
+                            <label htmlFor="titulo">Título:</label>
+                            <input className="input-campos" type="text" id="titulo" {...register("titulo")} required />
+                        </div>
+                        <div className="form-group-ci">
+                            <label htmlFor="volume">Volume:</label>
+                            <input className="input-campos" type="text" id="volume" {...register("volume")} required />
+                        </div>
+                        <div className="form-group-ci">
+                            <label htmlFor="editora">Editora:</label>
+                            <input className="input-campos" type="text" id="editora" {...register("editora")} required />
+                        </div>
+                        <div className="form-group-ci">
+                            <label htmlFor="categoria">Categoria:</label>
+                            <select id="categoria" className="input-campos" {...register("categoria")} required>
+                                <option value="">Selecione...</option>
+                                <option value="manga">Manga</option>
+                                <option value="hq">HQ</option>
+                                <option value="novel">Novel</option>
+                            </select>
+                        </div>
                     </div>
-                    <div className="form-group-ci">
-                        <label htmlFor="volume">Volume:</label>
-                        <input className="input-campos" type="text" id="volume" {...register("volume")} required />
+                )}
+
+                {step === 2 && (
+                    <div className="grid-container">
+                        <div className="form-group-ci">
+                            <label htmlFor="foto">Capa:</label>
+                            <input className="input-campos" type="text" id="foto" {...register("foto")} required />
+                        </div>
+                        <div className="form-group-ci">
+                            <label htmlFor="valor">Valor:</label>
+                            <input className="input-campos" type="text" id="valor" {...register("valor")} required />
+                        </div>
+                        <div className="form-group-ci">
+                            <label htmlFor="autor">Autor:</label>
+                            <input className="input-campos" type="text" id="autor" {...register("autor")} required/>
+                        </div>
+                        <div className="form-group-ci">
+                            <label htmlFor="genero">Gênero:</label>
+                            <input className="input-campos" type="text" id="genero" {...register("genero")} required />
+                        </div>
                     </div>
-                    <div className="form-group-ci">
-                        <label htmlFor="foto">Capa:</label>
-                        <input className="input-campos" type="text" id="foto" {...register("foto")} required />
+                )}
+
+                {step === 3 && (
+                    <div style={{ gridTemplateColumns: '1fr' }} className="grid-container">
+                        <div className="form-group-ci">
+                            <label htmlFor="sinopse">Sinopse:</label>
+                            <textarea style={{width: "100%"}} className="input-campos" id="sinopse" {...register("sinopse")}></textarea>
+                        </div>
                     </div>
-                    <div className="form-group-ci">
-                        <label htmlFor="valor">Valor:</label>
-                        <input className="input-campos" type="text" id="valor" {...register("valor")} required />
-                    </div>
-                    <div className="form-group-ci">
-                        <label htmlFor="editora">Editora:</label>
-                        <input className="input-campos" type="text" id="editora" {...register("editora")} required />
-                    </div>
-                    <div className="form-group-ci">
-                        <label htmlFor="genero">Gênero:</label>
-                        <input className="input-campos" type="text" id="genero" {...register("genero")} required />
-                    </div>
-                    <div className="form-group-ci">
-                        <label htmlFor="autor">Autor:</label>
-                        <input className="input-campos" type="text" id="autor" {...register("autor")} required/>
-                    </div>
-                    <div className="form-group-ci">
-                        <label htmlFor="categoria">Categoria:</label>
-                        <select id="categoria" className="input-campos" {...register("categoria")} required>
-                            <option value="">Selecione...</option>
-                            <option value="manga">Manga</option>
-                            <option value="hq">HQ</option>
-                            <option value="novel">Novel</option>
-                        </select>
-                    </div>
-                </div>
-                <div className="form-group-ci">
-                    <label htmlFor="sinopse">Sinopse:</label>
-                    <textarea className="input-campos" id="sinopse" {...register("sinopse")}></textarea>
-                </div>
-                <div className="form-group-ci">
-                    <button type="submit">Enviar</button>
+                )}
+                <div className="button-group">
+                    {step > 1 && <button type="button" onClick={prevStep}>Anterior</button>}
+                    {step < 3 && <button type="button" onClick={nextStep}>Próximo</button>}
+                    {step === 3 && <button type="submit">Enviar</button>}
                 </div>
             </form>
         </div>
