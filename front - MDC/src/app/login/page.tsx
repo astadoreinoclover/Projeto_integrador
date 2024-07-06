@@ -34,6 +34,16 @@ export default function Home() {
       Cookies.set("admin_logado_nome", admin.nome)
       Cookies.set("admin_logado_token", admin.token)
 
+      const response2 = await fetch("http://localhost:3004/userid", {
+        method: "POST",
+        headers: {"Content-type": "Application/json"},
+        body: JSON.stringify({ id:admin.id })
+      })
+      const user = await response2.json()
+      Cookies.set("admin_logado_userName", user.cpf);
+      Cookies.set("admin_logado_email",user.email)
+
+
       router.push("/principal")      
     } else if (response.status == 400) {
 //      alert("Erro... Login ou senha incorretos")
@@ -47,12 +57,17 @@ export default function Home() {
     setFocus("email")
   }, [])
 
+  function goBack() {
+    window.history.back();
+  }
+
   return (
     <main className="tela-login">
       <div className="tela-logo">
         <img src="./logo.png" alt="Mundo do Colecionador"/>
       </div>
       <div className="form-login">
+        <button style={{color: "white", position:"absolute",left:"20px", top: "50px"}} onClick={goBack}>Voltar</button>
         <div className="login-fundo">
           <h1 className="form-title">Mundo do Colecionador</h1>
           <form className="ajustes" onSubmit={handleSubmit(verificaLogin)}>

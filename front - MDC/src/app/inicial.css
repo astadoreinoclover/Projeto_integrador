@@ -1,8 +1,17 @@
+body {
+    overflow-x: hidden;
+}
+
+.tela-back {
+    background: linear-gradient(#2B419C, #fff);
+    min-height: 89vh;
+    padding-top: 40px;
+}
+
 .inicial {
     width: 100vw;
     text-align: center;
-    margin-top: 40px;
     font-size: 3.5vw;
-    color: #2B419C;
+    color: #fff;
     font-weight: 700;
 }

@@ -130,3 +130,22 @@ export async function NumberOfUsers (req, res) {
     res.status(500).json({ error: 'Erro ao contar usuários' });
   }
 };
+
+export async function userIdIndex(req, res) {
+  try {
+    const { id } = req.body;
+    let users;
+
+    if (id) {
+      users = await User.findByPk(id);
+    }
+    if (!users) {
+      return res.status(404).json({ error: 'Usuário não encontrado' });
+    }
+
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+}
+

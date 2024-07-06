@@ -3,11 +3,12 @@ import { loginUser } from "./controllers/userLoginController.js"
 import { verificaToken } from "./middlewares/verificaToken.js"
 import { verificaTokenAdmin } from "./middlewares/verificaTokenAdmin.js"
 import { ItemsCountByCategory, NumberOfItens, dataDelete, itemCreate, itemIndex, itemPesquisa, itemUpdate } from "./controllers/itemController.js"
-import { NumberOfUsers, userCreate, userDelete, userIndex, verificarCadastro, verificarCadastro2 } from "./controllers/userController.js"
+import { NumberOfUsers, userCreate, userDelete, userIdIndex, userIndex, verificarCadastro, verificarCadastro2 } from "./controllers/userController.js"
 import itensDelete, { calcTotal, colecaoCreate, colecaoIndex, itenDelete, itensDoUsuarioLogado, itensDoUsuarioLogado2, itenspelotitulo, itenspelovolume } from "./controllers/colecaoController.js"
 import { loginAdmin } from "./controllers/adminLoginController.js"
 import { adminCreate, adminIndex, verificarCadastroAdmin } from "./controllers/adminController.js"
 import { addReport, listReports, reportDelete, updateReportStatus } from "./controllers/reportController.js"
+
 
 const router = Router()
 
@@ -25,6 +26,7 @@ router.get('/user', userIndex)
       .post("/verificar-cadastro2", verificarCadastro2)
       .delete("/user",verificaTokenAdmin, userDelete)
       .get("/numeroUsuario", NumberOfUsers)
+      .post("/userid", userIdIndex)
 
 router.post("/loginUser", loginUser)     
 
@@ -47,5 +49,6 @@ router.get("/report", listReports)
       .post("/report", addReport)
       .put("/report",verificaTokenAdmin, updateReportStatus)
       .delete("/report", reportDelete)
+
 
 export default router

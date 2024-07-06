@@ -213,9 +213,9 @@ const Principal: React.FC = () => {
         <div className="options-i">
           <Link href="./principal" className="option-i">Minha Coleção<span className="line-i"></span></Link>
           <Link href="./principal/cadastrar-item" className="option-i">Cadastrar Item</Link>
-          <h1 className="option-i">Loja</h1>
+          <Link href="./principal/loja" className="option-i">Loja</Link>
         </div>
-        <div className="cards-i">{listar}</div>
+        <div style={{paddingBottom: "50px"}} className="cards-i">{listar}</div>
       </div>
       <div className="footer-i">
         <div className="total-spent-i">

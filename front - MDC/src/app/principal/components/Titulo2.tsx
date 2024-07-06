@@ -10,12 +10,15 @@ import "./titulo.css";
 function Titulo2() {
 
   const [nomeUsuario, setNomeUsuario] = useState<string>("")
+  const [userName, setUserName] = useState<string>("")
 
   const router = useRouter()
 
   useEffect(() => {
     const nome = Cookies.get("admin_logado_nome") as string
     setNomeUsuario(nome)
+    const userName = Cookies.get("admin_logado_userName") as string
+    setUserName(userName)
   }, [])
 
 
@@ -33,6 +36,8 @@ function Titulo2() {
           Cookies.remove("admin_logado_id")
           Cookies.remove("admin_logado_nome")
           Cookies.remove("admin_logado_token")
+          Cookies.remove("admin_logado_userName");
+          Cookies.remove("admin_logado_email")
           router.replace("/")
       }
     });
@@ -47,7 +52,7 @@ function Titulo2() {
           </div>
           <div style={{display: 'flex', color: 'white'}}>
             <div style={{ marginRight: '10px'}}>
-              <span style={{cursor: 'pointer', fontSize: '17.5px'}} className="titulolink">{nomeUsuario}   |</span>
+              <Link href="../../../principal/perfil" style={{cursor: 'pointer', fontSize: '17.5px'}} className="titulolink">{userName}   |</Link>
             </div>
             <div>
                 <Link style={{color: "#ff5f5f"}} href="#" className="titulolink" onClick={limpaCookies}>

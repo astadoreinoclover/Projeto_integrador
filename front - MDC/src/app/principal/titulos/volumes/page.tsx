@@ -83,7 +83,7 @@ function Volumes() {
         .map((item) => (
           <div style={{marginBottom: "20px", marginRight: "25px"}} className='titulo' key={item.iten.id} onClick={() => handleItemClick(item)}>
             <Link href={{ pathname: '/principal/titulos/volumes/item-selecionado', query: { volumeClicado: item.iten.volume } }}>
-              <img style={{width: "250px", borderTopLeftRadius: "15px", borderTopRightRadius: "15px"}} src={item.iten.foto} alt={`Capa ${item.iten.titulo}`} />
+              <img style={{width: "250px",maxHeight:"300px", minHeight:"300px", borderTopLeftRadius: "15px", borderTopRightRadius: "15px"}} src={item.iten.foto} alt={`Capa ${item.iten.titulo}`} />
               <h1 style={{color: "#000", textAlign:"center", textTransform: "uppercase", fontWeight: "bold", marginTop:"15px"}}>{item.iten.titulo} - {item.iten.volume}</h1>
             </Link>
           </div>
@@ -91,8 +91,13 @@ function Volumes() {
         ))
     : null;
 
+    function goBack() {
+      window.history.back();
+    }
+
   return (
     <div className='tela-com'>
+      <button style={{color: "white", position:"absolute",left:"20px", top: "80px"}} onClick={goBack}>Voltar</button>
         <div className='title-titulos'>
             <div className='title-opacity'>
                 <span className='text-title'>{tituloClicada}</span>

@@ -73,7 +73,7 @@ function CadastrarItem() {
                     const colecaoData = {
                         user_id: idUsuario,
                         item_id: dados.id,
-                        valor: data.valor
+                        valor: parseFloat(data.valor.replace(',', '.'))
                     };
 
                     const colecaoResponse = await fetch("http://localhost:3004/colecao", {
@@ -117,8 +117,8 @@ function CadastrarItem() {
         <div className="corpo-ci">
         <div className="options-c">
             <Link href="./" className="option-c">Minha Coleção</Link>
-            <Link href="./principal/cadastrar-item" className="option-c">Cadastrar Item<span className="line-c"></span></Link>
-            <h1 className="option-c">Loja</h1>
+            <Link href="cadastrar-item" className="option-c">Cadastrar Item<span className="line-c"></span></Link>
+            <Link href="loja" className="option-c">Loja</Link>
         </div>
         <div className="container-ci">
             <h2 className="form-de-liv-ci">Cadastro</h2>

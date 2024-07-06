@@ -134,8 +134,13 @@ function Item() {
         ))
     : null;
 
+    function goBack() {
+      window.history.back();
+    }
+
   return (
     <div className='fundo-item'>
+      <button style={{color: "white", position:"absolute",left:"20px", top: "80px"}} onClick={goBack}>Voltar</button>
         {exibir}
     </div>
   );

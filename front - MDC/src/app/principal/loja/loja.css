@@ -1,0 +1,72 @@
+.tela-l {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(#2b419c, #fff);
+    min-height: 88vh;
+}
+
+.container-l {
+    max-width: 800px;
+    margin: auto;
+    padding: 30px 20px;
+}
+
+.options-l {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.option-l {
+    color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+    position: relative;
+}
+
+.option-l:hover:after {
+    width: 100%;
+}
+
+.line-l {
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s;
+}
+
+@media (max-width: 400px) {
+    .option-l {
+        color: #fff;
+        font-size: 15px;
+        text-decoration: none;
+        position: relative;
+    }
+}
+
+@media (max-width: 420px) {
+    .option-l {
+        color: #fff;
+        font-size: 10px;
+        text-decoration: none;
+        position: relative;
+    }
+
+    .option-l:hover:after {
+        width: 100%;
+    }
+
+    .line-l {
+        width: 100%;
+        height: 2px;
+        background-color: #fff;
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        transition: width 0.3s;
+    }
+}

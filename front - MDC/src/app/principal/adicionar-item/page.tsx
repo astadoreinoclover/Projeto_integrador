@@ -283,7 +283,7 @@ export default function Adicionar() {
           body: JSON.stringify({
             user_id: userId,
             item_id: selectedItemId,
-            valor: parseFloat(valorPago)
+            valor: parseFloat(valorPago.replace(',', '.')) // Replace commas with periods
           }),
         });
 
@@ -340,8 +340,13 @@ export default function Adicionar() {
 
   const currentItem = selectedItemId !== null ? getItemById(selectedItemId) : null;
 
+  function goBack() {
+    window.history.back();
+}
+
   return (
     <main className="fundo-adicionar">
+      <button style={{color: "white", position:"relative",left:"20px", top: "0px"}} onClick={goBack}>Voltar</button>
       <div className="form-botton">
         <form className="form-adicionar">
           <input
@@ -395,9 +400,9 @@ export default function Adicionar() {
             <input
               className="input-valor"
               type="text"
-              placeholder="Valor Pago"
+              placeholder="Valor Pago R$ 0.00"
               value={valorPago}
-              onChange={(e) => setValorPago(e.target.value)}
+              onChange={(e) => setValorPago(e.target.value.replace(',', '.'))} // Replace commas with periods
             />
             <button className="button-add" onClick={handleAddItem}>Adicionar</button>
           </div>

@@ -29,6 +29,13 @@ function Cadastro() {
                 });
                 return;
             }
+            if((data.cpf).length > 11) {
+                Swal.fire({
+                    title: "O userName deve conter no maximo 11 caracteres",
+                    icon: "error"
+                });
+                return;
+            }
 
             const verificarCadastroResponse = await fetch("http://localhost:3004/verificar-cadastro", {
                 method: "POST",
@@ -45,9 +52,17 @@ function Cadastro() {
             const verificarCadastro = await verificarCadastroResponse.json();
             const verificarCadastro2 = await verificarCadastroResponse2.json();
 
-            if (verificarCadastro.cadastroExistente || verificarCadastro2.cadastroExistente) {
+            if ( verificarCadastro2.cadastroExistente) {
                 Swal.fire({
-                    title: "Email ou CPF já cadastrados",
+                    title: "UserName já cadastrado",
+                    icon: "warning"
+                });
+                return;
+            }
+
+            if (verificarCadastro.cadastroExistente) {
+                Swal.fire({
+                    title: "Email já cadastrado",
                     icon: "warning"
                 });
                 return;
@@ -65,6 +80,8 @@ function Cadastro() {
                     Cookies.set("admin_logado_id", dados.id);
                     Cookies.set("admin_logado_nome", dados.nome);
                     Cookies.set("admin_logado_token", dados.token);
+                    Cookies.set("admin_logado_userName", dados.cpf);
+                    Cookies.set("admin_logado_email",dados.email)
                     router.push("/principal");
                 } else {
                     toast.error("Erro! Cadastro falhou");
@@ -82,11 +99,16 @@ function Cadastro() {
         }
     }
 
+    function goBack() {
+        window.history.back();
+    }
+    
     return (
         <main className="fundo-tela">
             <div className="cadastro-logo">
                 <img src="./logo.png" alt="Mundo do Colecionador"/>
             </div>
+            <button style={{color: "white", position:"absolute",left:"20px", top: "50px"}} onClick={goBack}>Voltar</button>
             <div className="form-cadastro">
                 <div className="cadastro-fundo">
                     <h1 className="cadastro-title">Mundo do Colecionador</h1>
@@ -96,7 +118,7 @@ function Cadastro() {
                             <input type="text" id="nome" className="input-cadastro" required {...register("nome")} />
                         </div>
                         <div className="area-inputs">
-                            <label htmlFor="cpf" className="inputs-label">CPF</label>
+                            <label htmlFor="cpf" className="inputs-label">UserName</label>
                             <input type="text" id="cpf" className="input-cadastro" required {...register("cpf")} />
                         </div>
                         <div className="area-inputs">
@@ -104,7 +126,12 @@ function Cadastro() {
                             <input type="email" id="email" className="input-cadastro" required {...register("email")} />
                         </div>
                         <div className="area-inputs">
-                            <label htmlFor="senha" className="inputs-label">Senha</label>
+                            <label htmlFor="senha" className="inputs-label">
+                                Senha
+                                <span className="tooltip">!
+                                    <span className="tooltiptext">Sua senha deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula,uma letra minuscula, um número e um caractere especial.</span>
+                                </span>
+                            </label>
                             <input type="password" id="senha" className="input-cadastro" required {...register("senha")} />
                         </div>
                         <div className="area-inputs">
