@@ -15,3 +15,107 @@ body {
     color: #fff;
     font-weight: 700;
 }
+
+.categoria-menu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+}
+
+.categoria-menu button {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    cursor: pointer;
+    font-size: 2vw; /* Aumentei o tamanho da fonte para ser mais visível */
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.categoria-menu button.active {
+    background-color: #fff;
+    color: #2B419C;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.categoria {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 80%;
+}
+
+.items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.item {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* Esconde o título */
+    transition: transform 0.3s ease-in-out;
+}
+
+.item:hover {
+    transform: translateY(-5px);
+}
+
+.item img {
+    max-width: 100%;
+    height: 350px; /* Altura fixa para as imagens */
+    object-fit: cover; /* Para ajustar o tamanho da imagem */
+    border-radius: 8px;
+}
+
+.item-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px;
+    margin: 0;
+    font-weight: bold;
+    font-size: 1.5vw;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.item:hover .item-title {
+    transform: translateY(0); /* Mostra o título ao passar o mouse */
+}
+
+@media (max-width: 768px) {
+    .items {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 60px; /* Reduzi o espaçamento entre os itens */
+    }
+
+    .categoria-menu button {
+        font-size: 2.5vw; /* Ajustei o tamanho da fonte para dispositivos menores */
+    }
+}
+
+@media (max-width: 480px) {
+    .items {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .item-title {
+        font-size: 15px; /* Defini um tamanho fixo para o título em dispositivos muito pequenos */
+    }
+
+    .categoria-menu button {
+        font-size: 3vw; /* Ajustei ainda mais o tamanho da fonte para dispositivos muito pequenos */
+    }
+}

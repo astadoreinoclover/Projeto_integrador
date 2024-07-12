@@ -13,7 +13,7 @@ interface Inputs {
     titulo: string;
     genero: string;
     editora: string;
-    categoria?: "manga" | "hq" | "novel";
+    categoria?: "manga" | "hq" | "novel" |"";
     foto: string;
     volume: string;
     valor: string;
@@ -36,6 +36,85 @@ function CadastrarItem() {
   }, [])
 
     async function enviaDados(data: Inputs) {
+        if(data.categoria === "") {
+            Swal.fire({
+                title: "Selecione uma categoria",
+                icon: "warning"
+            });
+            return
+        }
+        if(data.titulo === "") {
+            Swal.fire({
+                title: "Preencha o campo de titulo",
+                icon: "warning"
+            });
+            return
+        }
+        if(data.genero === "") {
+            Swal.fire({
+                title: "Preencha o Genero da obra",
+                icon: "warning"
+            });
+            return
+        }
+        if(data.foto === "") {
+            Swal.fire({
+                title: "Adicione a URL da capa",
+                icon: "warning"
+            });
+            return
+        }
+        if(data.volume === "") {
+            Swal.fire({
+                title: "Preencha o campo de volume",
+                icon: "warning"
+            });
+            return
+        }
+        if (!/^[0-9]*$/.test(data.volume)) {
+            Swal.fire({
+                title: "O campo volume só pode receber números",
+                icon: "warning"
+            });
+            return;
+        }
+        if(data.editora === "") {
+            Swal.fire({
+                title: "Preencha o campo de editora",
+                icon: "warning"
+            });
+            return
+        }
+        if(data.autor === "") {
+            Swal.fire({
+                title: "Preencha o campo de autor",
+                icon: "warning"
+            });
+            return
+        }
+        if(data.valor === "") {
+            Swal.fire({
+                title: "Preencha o campo de valor",
+                icon: "warning"
+            });
+            return
+        }
+        const valor = parseFloat(data.valor.replace(',', '.'));
+
+        if (isNaN(valor)) {
+            Swal.fire({
+                title: "O campo valor só pode receber números",
+                icon: "warning"
+            });
+            return;
+        }
+        if(data.sinopse === "") {
+            Swal.fire({
+                title: "Preencha o campo de sinopse",
+                icon: "warning"
+            });
+            return
+        }
         try {
             const response0 = await fetch("http://localhost:3004/volume", {
                 method: "POST",
@@ -132,11 +211,11 @@ function CadastrarItem() {
                     <div className="grid-container">
                         <div className="form-group-ci">
                             <label htmlFor="titulo">Título:</label>
-                            <input className="input-campos" type="text" id="titulo" {...register("titulo")} required />
+                            <input className="input-campos" type="text" id="titulo" {...register("titulo")} required placeholder="Titulo da coleção"/>
                         </div>
                         <div className="form-group-ci">
                             <label htmlFor="volume">Volume:</label>
-                            <input className="input-campos" type="text" id="volume" {...register("volume")} required />
+                            <input className="input-campos" type="text" id="volume" {...register("volume")} required placeholder="Apenas o número da edição"/>
                         </div>
                         <div className="form-group-ci">
                             <label htmlFor="editora">Editora:</label>
@@ -158,11 +237,11 @@ function CadastrarItem() {
                     <div className="grid-container">
                         <div className="form-group-ci">
                             <label htmlFor="foto">Capa:</label>
-                            <input className="input-campos" type="text" id="foto" {...register("foto")} required />
+                            <input className="input-campos" type="text" id="foto" {...register("foto")} required placeholder="Link da Capa" />
                         </div>
                         <div className="form-group-ci">
                             <label htmlFor="valor">Valor:</label>
-                            <input className="input-campos" type="text" id="valor" {...register("valor")} required />
+                            <input className="input-campos" type="text" id="valor" {...register("valor")} required placeholder="0,00" />
                         </div>
                         <div className="form-group-ci">
                             <label htmlFor="autor">Autor:</label>
@@ -184,6 +263,7 @@ function CadastrarItem() {
                     </div>
                 )}
                 <div className="button-group">
+                    {step === 1 && <div></div>}
                     {step > 1 && <button type="button" onClick={prevStep}>Anterior</button>}
                     {step < 3 && <button type="button" onClick={nextStep}>Próximo</button>}
                     {step === 3 && <button type="submit">Enviar</button>}

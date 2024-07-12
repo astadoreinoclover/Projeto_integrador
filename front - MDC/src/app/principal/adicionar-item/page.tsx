@@ -204,6 +204,7 @@ import { toast } from "sonner";
 import "./adicionar.css";
 import Cookies from "js-cookie";
 import Link from "next/link";
+import Swal from "sweetalert2";
 
 interface Item {
   id: number;
@@ -274,6 +275,14 @@ export default function Adicionar() {
   };
 
   const handleAddItem = async () => {
+    let valor = parseFloat(valorPago.replace(',', '.'))
+    if (isNaN(valor)) {
+      Swal.fire({
+          title: "O campo valor só pode receber números",
+          icon: "warning"
+      });
+      return;
+  }
     const userId = Number(Cookies.get("admin_logado_id"));
     if (selectedItemId !== null && valorPago !== "") {
       try {
@@ -346,7 +355,7 @@ export default function Adicionar() {
 
   return (
     <main className="fundo-adicionar">
-      <button style={{color: "white", position:"relative",left:"20px", top: "0px"}} onClick={goBack}>Voltar</button>
+      <button style={{color: "#2B419C",backgroundColor: "white", position:"relative",left:"20px", top: "0px", padding: "5px 10px", fontWeight: "700", borderRadius: "10px", marginBottom: "5px"}} onClick={goBack}>Voltar</button>
       <div className="form-botton">
         <form className="form-adicionar">
           <input
@@ -359,7 +368,6 @@ export default function Adicionar() {
         </form>
         <Link href="./cadastrar-item" className="link-cadastro">Cadastrar Item</Link>
       </div>
-      
       <div className="item-adicionar">
         {search && filteredItems.length > 0 ? (
           filteredItems.map((item) => (

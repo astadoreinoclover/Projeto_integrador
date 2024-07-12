@@ -140,7 +140,7 @@ function Item() {
 
   return (
     <div className='fundo-item'>
-      <button style={{color: "white", position:"absolute",left:"20px", top: "80px"}} onClick={goBack}>Voltar</button>
+      <button style={{color: "#2B419C",backgroundColor: "white", position:"absolute",left:"20px", top: "90px", padding: "5px 10px", fontWeight: "700", borderRadius: "10px", marginBottom: "5px"}} onClick={goBack}>Voltar</button>
         {exibir}
     </div>
   );

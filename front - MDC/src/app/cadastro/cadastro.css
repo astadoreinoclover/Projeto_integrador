@@ -60,16 +60,16 @@
 }
 
 .button-cadastro {
-    background-color: #4caf50;
+    background-color: #e59260;
     color: #fff;
     padding: 5px 20px;
     font-size: 20px;
     border-radius: 10px;
-    opacity: 0.6;
 }
 
 .button-cadastro:hover {
     opacity: 1;
+    background-color: #51c069;
 }
 
 .pergunta-cadastro {
@@ -79,12 +79,12 @@
 }
 
 .resposta-cadastro {
-    color: #4caf50;
-    opacity: 0.5;
+    color:  #e59260;
 }
 
 .resposta-cadastro:hover {
     opacity: 1;
+    color: #51c069;
 }
 
 .tooltip {

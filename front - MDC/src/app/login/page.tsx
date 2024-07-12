@@ -63,11 +63,12 @@ export default function Home() {
 
   return (
     <main className="tela-login">
+      <button style={{color: "#2B419C",backgroundColor: "white", position:"absolute",left:"20px", top: "20px", padding: "5px 10px", fontWeight: "700", borderRadius: "10px", marginBottom: "5px"}} onClick={goBack}>Voltar</button>
       <div className="tela-logo">
         <img src="./logo.png" alt="Mundo do Colecionador"/>
       </div>
       <div className="form-login">
-        <button style={{color: "white", position:"absolute",left:"20px", top: "50px"}} onClick={goBack}>Voltar</button>
+
         <div className="login-fundo">
           <h1 className="form-title">Mundo do Colecionador</h1>
           <form className="ajustes" onSubmit={handleSubmit(verificaLogin)}>

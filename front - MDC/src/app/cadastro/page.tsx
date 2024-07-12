@@ -105,10 +105,10 @@ function Cadastro() {
     
     return (
         <main className="fundo-tela">
+             <button style={{color: "#2B419C",backgroundColor: "white", position:"absolute",left:"20px", top: "20px", padding: "5px 10px", fontWeight: "700", borderRadius: "10px", marginBottom: "5px"}} onClick={goBack}>Voltar</button>
             <div className="cadastro-logo">
                 <img src="./logo.png" alt="Mundo do Colecionador"/>
             </div>
-            <button style={{color: "white", position:"absolute",left:"20px", top: "50px"}} onClick={goBack}>Voltar</button>
             <div className="form-cadastro">
                 <div className="cadastro-fundo">
                     <h1 className="cadastro-title">Mundo do Colecionador</h1>

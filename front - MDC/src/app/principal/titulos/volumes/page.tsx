@@ -97,12 +97,12 @@ function Volumes() {
 
   return (
     <div className='tela-com'>
-      <button style={{color: "white", position:"absolute",left:"20px", top: "80px"}} onClick={goBack}>Voltar</button>
         <div className='title-titulos'>
             <div className='title-opacity'>
                 <span className='text-title'>{tituloClicada}</span>
             </div>
         </div>
+        <button style={{color: "#2B419C",backgroundColor: "white", position:"relative",left:"20px", top: "10px", padding: "5px 10px", fontWeight: "700", borderRadius: "10px", marginBottom: "5px"}} onClick={goBack}>Voltar</button>
         <div style={{flexWrap: "wrap"}}  className='cards-container'>
           {listar}
         </div>
